@@ -82,15 +82,15 @@ class CustomARView: ARView, ARSessionDelegate {
         character = try! ModelEntity.loadBodyTracked(named: "biped-robot")
         // character = try! ModelEntity.loadBodyTracked(named: "biped-rig-export")
         character.scale = [1, 1, 1]
-        originAnchor.addChild(character)
+//        originAnchor.addChild(character)
 
-        // Create empty entities for all joints. Use to attach entities.
+        // Create empty entities for all joints. Use to attach other entities.
         for joint in SkeletonJoint.allCases {
             let entity = Entity()
             jointEntities[joint] = entity
-            character.addChild(entity)
+            originAnchor.addChild(entity)
         }
-        
+
         /*
         // Add random colored boxes to joints.
         for joint in SkeletonJoint.mainJoints {
@@ -114,7 +114,7 @@ class CustomARView: ARView, ARSessionDelegate {
             
             // Update joint transforms.
             for joint in SkeletonJoint.allCases {
-                jointEntities[joint]?.transform.matrix = skeleton3D.modelTransform(for: joint.jointName)!
+                jointEntities[joint]?.transform.matrix = anchorTransform * skeleton3D.modelTransform(for: joint.jointName)!
             }
             
             // Update rigged character position and orientation.
