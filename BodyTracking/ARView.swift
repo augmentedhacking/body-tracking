@@ -121,6 +121,17 @@ class CustomARView: ARView, ARSessionDelegate {
             let transform = Transform(matrix: anchorTransform)
             character.position = transform.translation
             character.orientation = transform.rotation
+            
+
+            // Get screen position of right_hand_joint.
+            if let rightHandPos = jointEntities[.right_hand_joint]?.position {
+                viewModel.rightHandJointPos = arView.project(rightHandPos)
+            }
+
+            // Get screen position of left_hand_joint.
+            if let leftHandPos = jointEntities[.left_hand_joint]?.position {
+                viewModel.leftHandJointPos = arView.project(leftHandPos)
+            }
         }
     }
 }

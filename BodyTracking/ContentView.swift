@@ -16,6 +16,24 @@ struct ContentView : View {
         ZStack {
             // AR View.
             ARViewContainer(viewModel: viewModel)
+
+            // Move right hand label to screen space position.
+            if let rightHandJointPos = viewModel.rightHandJointPos {
+                Text("Right Hand")
+                    .font(.title3).fontWeight(.medium)
+                    .padding(10)
+                    .background(Color.green)
+                    .position(rightHandJointPos)
+            }
+
+            // Move left hand label to screen space position.
+            if let leftHandJointPos = viewModel.leftHandJointPos {
+                Text("Left Hand")
+                    .font(.title3).fontWeight(.medium)
+                    .padding(10)
+                    .background(Color.blue)
+                    .position(leftHandJointPos)
+            }
         }
     }
 }

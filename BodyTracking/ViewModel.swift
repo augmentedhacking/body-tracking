@@ -11,5 +11,6 @@ import Combine
 
 @MainActor
 class ViewModel: ObservableObject {
-    
+    @Published var rightHandJointPos: CGPoint?
+    @Published var leftHandJointPos: CGPoint?
 }
